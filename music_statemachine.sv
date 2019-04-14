@@ -4,29 +4,21 @@ module music_statemachine(
 	output logic MUS_DONE, //Signal 
 	//Output audio
 	
+	input logic AUD_ADCDAT, AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK,
+	output logic AUD_DACDAT, AUD_MCLK, I2C_SCLK, I2C_SDAT,
+	
 	
 );
 
 
 
 
-	logic [15:0] mus_LDATA;
-	logic [15:0] mus_RDATA;
+	logic [15:0] mus_LDATA, mus_RDATA, mus_LDATA_in, mus_RDATA_in;
 	logic mus_INIT;
 	logic mus_INIT_FINISH;
 	logic mus_adc_full;
 	logic mus_data_over;
 	logic [31:0] mus_ADCDATA;
-	
-	//Drivers that are required for the audio interface but are not used
-	logic AUD_MCLK;
-	logic AUD_BCLK;
-	logic AUD_ADCDAT;
-	logic AUD_DACDAT;
-	logic AUD_DACLRCK
-	logic AUD_ADCLRCK
-	logic I2C_SDAT;
-	logic I2C_SCLK
 	
 	audio_interface audint (.LDATA(mus_LDATA),
 									.RDATA(mus_RDATA),
@@ -55,7 +47,11 @@ module music_statemachine(
 			if (current == ADC_DONE) begin
 				mus_counter <= mus_counter + 1'b1;
 			end
+			
 			current <= next;
+			mus_LData <= mus_LData_in;
+			mus_RData <= mus_RData_in;
+			
 		end
 	end
 	
@@ -67,8 +63,9 @@ module music_statemachine(
 		
 		unique case (current)
 			hold: begin
-				if (INIT)
+				if (INIT) begin
 					next = INIT_WAIT;
+				end
 			end
 			INIT_WAIT: begin
 				if (mus_INIT_FINISH == 1'b1) begin
@@ -102,8 +99,8 @@ module music_statemachine(
 					end
 				end
 			end
-			DONE: begin
-				MUS_DONE = 1'b1;
+			DONE: begin 
+			
 			end
 			default: ;
 		endcase
@@ -112,16 +109,17 @@ module music_statemachine(
 	always_comb begin
 		case (current)
 			INIT: begin
-			
+				mus_INIT = 1'b1;
 			end
 			INIT_WAIT:	begin
-			
+				mus_INIT = 1'b0;
 			end
 			INIT_DONE: begin
-				
+				//No signals need to be set here. Unless we do some load screen animation.
 			end
 			ADC_START: begin
-				
+				mus_LData_in = 16'b0; //Need to feed these with hex values from table every clock cycle
+				mus_RData_in = 16'b0;
 			end
 			ADC_WAIT: begin
 				
@@ -133,7 +131,7 @@ module music_statemachine(
 					
 			end
 			DONE: begin
-				
+				MUS_DONE = 1'b1;
 			end
 		endcase
 	end
