@@ -1,0 +1,125 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'CLOCK_50'
+Slack : -4.689
+TNS   : -117.149
+
+Type  : Slow 1200mV 85C Model Setup 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.690
+TNS   : -1.574
+
+Type  : Slow 1200mV 85C Model Hold 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.108
+TNS   : -0.273
+
+Type  : Slow 1200mV 85C Model Hold 'CLOCK_50'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'CLOCK_50'
+Slack : -0.936
+TNS   : -42.420
+
+Type  : Slow 1200mV 85C Model Recovery 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.376
+TNS   : -1.504
+
+Type  : Slow 1200mV 85C Model Removal 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : 0.216
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'CLOCK_50'
+Slack : 1.028
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -113.510
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Slow 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -4.148
+TNS   : -98.826
+
+Type  : Slow 1200mV 0C Model Setup 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.535
+TNS   : -1.127
+
+Type  : Slow 1200mV 0C Model Hold 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.014
+TNS   : -0.014
+
+Type  : Slow 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.354
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'CLOCK_50'
+Slack : -0.739
+TNS   : -32.817
+
+Type  : Slow 1200mV 0C Model Recovery 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.360
+TNS   : -1.440
+
+Type  : Slow 1200mV 0C Model Removal 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : 0.322
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'CLOCK_50'
+Slack : 0.906
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -113.510
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -1.285
+TNS   : -5.140
+
+Type  : Fast 1200mV 0C Model Setup 'CLOCK_50'
+Slack : -2.094
+TNS   : -19.956
+
+Type  : Fast 1200mV 0C Model Setup 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -0.014
+TNS   : -0.014
+
+Type  : Fast 1200mV 0C Model Hold 'CLOCK_50'
+Slack : 0.181
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'CLOCK_50'
+Slack : 0.021
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : 0.174
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'CLOCK_50'
+Slack : 0.505
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -3.000
+TNS   : -94.360
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'music_statemachine:msm|audio_interface:audint|i2c_counter[9]'
+Slack : -1.000
+TNS   : -4.000
+
+------------------------------------------------------------
