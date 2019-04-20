@@ -139,7 +139,7 @@
   <sld_infos>
     <sld_info hpath="finalproj_soc:nios_system" name="nios_system">
       <assignment_values>
-        <assignment_value text="QSYS_NAME finalproj_soc HAS_SOPCINFO 1 GENERATION_ID 1555727209"/>
+        <assignment_value text="QSYS_NAME finalproj_soc HAS_SOPCINFO 1 GENERATION_ID 1555804138"/>
       </assignment_values>
       <parameters/>
     </sld_info>

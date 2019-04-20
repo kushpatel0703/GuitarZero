@@ -6,7 +6,7 @@
 
 module  frameRAM_yellow
 (
-		input [18:0] read_address,
+		input [12:0] read_address,
 		input Clk,
 
 		output logic [23:0] data_Out
