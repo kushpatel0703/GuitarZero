@@ -1,5 +1,5 @@
 Flow report for ECE385_FinalProj
-Wed Apr 17 10:37:40 2019
+Fri Apr 19 21:29:56 2019
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -40,22 +40,22 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Apr 17 10:37:40 2019       ;
+; Flow Status                        ; Successful - Fri Apr 19 21:29:56 2019       ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                      ; ECE385_FinalProj                            ;
 ; Top-level Entity Name              ; toplevel                                    ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 138                                         ;
-;     Total combinational functions  ; 106                                         ;
-;     Dedicated logic registers      ; 88                                          ;
-; Total registers                    ; 88                                          ;
-; Total pins                         ; 27                                          ;
+; Total logic elements               ; 3,238 / 114,480 ( 3 % )                     ;
+;     Total combinational functions  ; 2,597 / 114,480 ( 2 % )                     ;
+;     Dedicated logic registers      ; 2,114 / 114,480 ( 2 % )                     ;
+; Total registers                    ; 2233                                        ;
+; Total pins                         ; 136 / 529 ( 26 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
+; Total memory bits                  ; 11,392 / 3,981,312 ( < 1 % )                ;
+; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
+; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/17/2019 10:37:18 ;
+; Start date & time ; 04/19/2019 21:26:25 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ECE385_FinalProj    ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+------------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value    ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+------------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 192215771061883.155551543714072        ; --               ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 242250662097340.155572718538416        ; --               ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --               ; --          ; testbench      ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench                              ; --               ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                      ; --               ; --          ; eda_simulation ;
@@ -107,8 +107,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:24     ; 1.0                     ; 4796 MB             ; 00:00:51                           ;
-; Total                ; 00:00:24     ; --                      ; --                  ; 00:00:51                           ;
+; Analysis & Synthesis ; 00:01:50     ; 1.0                     ; 4949 MB             ; 00:02:56                           ;
+; Fitter               ; 00:00:55     ; 1.0                     ; 5584 MB             ; 00:00:53                           ;
+; Assembler            ; 00:00:09     ; 1.0                     ; 4717 MB             ; 00:00:06                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.1                     ; 4876 MB             ; 00:00:06                           ;
+; EDA Netlist Writer   ; 00:00:10     ; 1.0                     ; 4727 MB             ; 00:00:08                           ;
+; Total                ; 00:03:12     ; --                      ; --                  ; 00:04:09                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -117,7 +121,11 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; NKP_XPS13        ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; WINDOWS-IQHQFQF  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; WINDOWS-IQHQFQF  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; WINDOWS-IQHQFQF  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; WINDOWS-IQHQFQF  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; WINDOWS-IQHQFQF  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -125,6 +133,10 @@ refer to the applicable agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off ECE385_FinalProj -c ECE385_FinalProj
+quartus_fit --read_settings_files=off --write_settings_files=off ECE385_FinalProj -c ECE385_FinalProj
+quartus_asm --read_settings_files=off --write_settings_files=off ECE385_FinalProj -c ECE385_FinalProj
+quartus_sta ECE385_FinalProj -c ECE385_FinalProj
+quartus_eda --read_settings_files=off --write_settings_files=off ECE385_FinalProj -c ECE385_FinalProj
 
 
 
