@@ -17,7 +17,7 @@ logic [23:0] mem [0:4095];
 
 initial
 begin
-	 $readmemh("sprite_bytes/blue.txt", mem);
+	 $readmemh("ECE385-HelperTools-master/PNG To Hex/On-Chip Memory/sprite_bytes/blue.txt", mem);
 end
 
 

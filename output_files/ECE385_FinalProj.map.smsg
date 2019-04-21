@@ -16,7 +16,7 @@ Warning (10236): Verilog HDL Implicit Net warning at toplevel.sv(72): created im
 Warning (10236): Verilog HDL Implicit Net warning at toplevel.sv(73): created implicit net for "hpi_cs" File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/toplevel.sv Line: 73
 Warning (10236): Verilog HDL Implicit Net warning at toplevel.sv(74): created implicit net for "hpi_reset" File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/toplevel.sv Line: 74
 Warning (10236): Verilog HDL Implicit Net warning at toplevel.sv(130): created implicit net for "MUS_DONE" File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/toplevel.sv Line: 130
-Warning (10236): Verilog HDL Implicit Net warning at toplevel.sv(138): created implicit net for "is_sprite" File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/toplevel.sv Line: 138
+Warning (10236): Verilog HDL Implicit Net warning at toplevel.sv(142): created implicit net for "is_sprite_ornage" File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/toplevel.sv Line: 142
 Warning (10037): Verilog HDL or VHDL warning at finalproj_soc_sdram.v(318): conditional expression evaluates to a constant File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/db/ip/finalproj_soc/submodules/finalproj_soc_sdram.v Line: 318
 Warning (10037): Verilog HDL or VHDL warning at finalproj_soc_sdram.v(328): conditional expression evaluates to a constant File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/db/ip/finalproj_soc/submodules/finalproj_soc_sdram.v Line: 328
 Warning (10037): Verilog HDL or VHDL warning at finalproj_soc_sdram.v(338): conditional expression evaluates to a constant File: C:/Users/Kush/Documents/Git Projects/ECE385_FinalProj/db/ip/finalproj_soc/submodules/finalproj_soc_sdram.v Line: 338

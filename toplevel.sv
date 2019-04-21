@@ -48,7 +48,7 @@ module toplevel(
                                  DRAM_CLK      //SDRAM Clock
                     );
     
-    logic Reset_h, Clk;
+    logic Reset_h, Clk, is_sprite_red, is_sprite_blue, is_sprite_green, is_sprite_yellow, is_sprite_orange;
     logic [7:0] keycode;
 	 logic [3:0] toHex;
 	 logic [9:0] DrawX;
@@ -135,7 +135,12 @@ module toplevel(
 
 	
 	color_mapper col(
-		.is_sprite(is_sprite),
+		.is_sprite_red(is_sprite_red),
+		.is_sprite_blue(is_sprite_blue),
+		.is_sprite_green(is_sprite_green),
+		.is_sprite_yellow(is_sprite_yellow),
+		.is_sprite_orange(is_sprite_ornage),
+		.Clk(Clk),
 		.DrawX(DrawX),
 		.DrawY(DrawY),
 		.VGA_R(VGA_R),
@@ -144,15 +149,57 @@ module toplevel(
 	);
 	
 	
-	sprite r1(
+	sprite_red r1(
 	  .Clk(Clk),         
 	  .Reset(Reset_h),       
 	  .frame_clk(VGA_VS),   
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
-	  .is_sprite(is_sprite),  
+	  .is_sprite_red(is_sprite_red),  
 	  .keycode(keycode)
-		
+	);
+	
+	
+	sprite_blue b1(
+	  .Clk(Clk),         
+	  .Reset(Reset_h),       
+	  .frame_clk(VGA_VS),   
+	  .DrawX(DrawX),
+	  .DrawY(DrawY),
+	  .is_sprite_blue(is_sprite_blue),  
+	  .keycode(keycode)
+	);
+	
+	
+	sprite_green g1(
+	  .Clk(Clk),         
+	  .Reset(Reset_h),       
+	  .frame_clk(VGA_VS),   
+	  .DrawX(DrawX),
+	  .DrawY(DrawY),
+	  .is_sprite_green(is_sprite_green),  
+	  .keycode(keycode)
+	);
+
+	
+	sprite_yellow y1(
+	  .Clk(Clk),         
+	  .Reset(Reset_h),       
+	  .frame_clk(VGA_VS),   
+	  .DrawX(DrawX),
+	  .DrawY(DrawY),
+	  .is_sprite_yellow(is_sprite_yellow),  
+	  .keycode(keycode)
+	);
+	
+	sprite_orange(
+	  .Clk(Clk),         
+	  .Reset(Reset_h),       
+	  .frame_clk(VGA_VS),   
+	  .DrawX(DrawX),
+	  .DrawY(DrawY),
+	  .is_sprite_orange(is_sprite_orange),  
+	  .keycode(keycode)
 	);
 
 

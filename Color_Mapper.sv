@@ -14,26 +14,90 @@
 //-------------------------------------------------------------------------
 
 // color_mapper: Decide which color to be output to VGA for each pixel.
-module  color_mapper ( input              is_sprite,            // Whether current pixel belongs to ball 
+module  color_mapper ( input              is_sprite_red,            // Whether current pixel belongs to ball
+							  input					is_sprite_blue,
+							  input					is_sprite_green,
+							  input					is_sprite_orange,
+							  input					is_sprite_yellow,
+							  input					Clk,
                                                               //   or background (computed in ball.sv)
                        input        [9:0] DrawX, DrawY,       // Current pixel coordinates
                        output logic [7:0] VGA_R, VGA_G, VGA_B // VGA RGB output
                      );
     
     logic [7:0] Red, Green, Blue;
+	 logic [23:0] do_yellow, do_green, do_blue, do_orange, do_red;
 	 logic [12:0] read_address;
-   
     
     // Output colors to VGA
     assign VGA_R = Red;
     assign VGA_G = Green;
     assign VGA_B = Blue;
 	 assign read_address = DrawY * 10'd64 + DrawX;
+	 
+	 frameRAM_yellow(
+		.read_address(read_address),
+		.Clk(Clk),
+		.data_Out(do_yellow)
+	 );
+	 
+	 frameRAM_red(
+		.read_address(read_address),
+		.Clk(Clk),
+		.data_Out(do_red)
+	 );
+	 
+	 frameRAM_blue(
+		.read_address(read_address),
+		.Clk(Clk),
+		.data_Out(do_blue)
+	 );
+	 
+	 frameRAM_green(
+		.read_address(read_address),
+		.Clk(Clk),
+		.data_Out(do_green)
+	 );
+	 
+	 frameRAM_orange(
+		.read_address(read_address),
+		.Clk(Clk),
+		.data_Out(do_orange)
+	 );
+	 
     
     // Assign color based on is_ball signal
     always_comb
     begin
-        if (is_sprite == 1'b1) 
+        if (is_sprite_red == 1'b1) 
+        begin
+            // White ball
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'hff;
+        end
+		  else if (is_sprite_blue == 1'b1) 
+        begin
+            // White ball
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'hff;
+        end
+		  else if (is_sprite_green == 1'b1) 
+        begin
+            // White ball
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'hff;
+        end
+		  else if (is_sprite_yellow == 1'b1) 
+        begin
+            // White ball
+            Red = 8'hff;
+            Green = 8'hff;
+            Blue = 8'hff;
+        end
+		  else if (is_sprite_orange == 1'b1) 
         begin
             // White ball
             Red = 8'hff;
