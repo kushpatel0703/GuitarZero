@@ -19,7 +19,8 @@ module sprite_orange ( input         Clk,                // 50 MHz clock
                              frame_clk,          // The clock indicating a new frame (~60Hz)
 					input [7:0]	  keycode,
                input [9:0]   DrawX, DrawY,       // Current pixel coordinates
-               output logic  is_sprite_orange             // Whether current pixel belongs to ball or background
+               output logic  is_sprite_orange,             // Whether current pixel belongs to ball or background
+					output [9:0]  orange_x_pos, orange_y_pos
               );
     
     parameter [9:0] Sprite_X_Min = 10'd0;       // Leftmost point on the X axis
@@ -31,6 +32,9 @@ module sprite_orange ( input         Clk,                // 50 MHz clock
 	 
 	 logic frame_clk_delayed, frame_clk_rising_edge;
 	 logic [9:0] Sprite_X_Pos, Sprite_Y_Pos;
+	 
+	 assign orange_x_pos = Sprite_X_Pos;
+	 assign orange_y_pos = Sprite_Y_Pos;
 	 
     always_ff @ (posedge Clk) begin
         frame_clk_delayed <= frame_clk;
@@ -45,7 +49,7 @@ module sprite_orange ( input         Clk,                // 50 MHz clock
 	 int Sprite_Y_Bound, Sprite_X_Bound, Size;
     assign Size = Sprite_Size;
 	 assign Sprite_X_Bound = Sprite_X_Pos + Sprite_Size;
-	 assign Sprite_Y_Bound = Sprite_Y_Pos - Sprite_Size;
+	 assign Sprite_Y_Bound = Sprite_Y_Pos + Sprite_Size;
     always_comb begin
         if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound) 
             is_sprite_orange = 1'b1;

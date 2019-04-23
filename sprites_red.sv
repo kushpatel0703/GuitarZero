@@ -19,7 +19,8 @@ module sprite_red ( input         Clk,                // 50 MHz clock
                              frame_clk,          // The clock indicating a new frame (~60Hz)
 					input [7:0]	  keycode,
                input [9:0]   DrawX, DrawY,       // Current pixel coordinates
-               output logic  is_sprite_red             // Whether current pixel belongs to ball or background
+               output logic  is_sprite_red,             // Whether current pixel belongs to ball or background
+					output [9:0]  red_x_pos, red_y_pos
               );
     
     parameter [9:0] Sprite_X_Min = 10'd0;       // Leftmost point on the X axis
@@ -37,6 +38,9 @@ module sprite_red ( input         Clk,                // 50 MHz clock
         frame_clk_rising_edge <= (frame_clk == 1'b1) && (frame_clk_delayed == 1'b0);
     end
 	 
+	 assign red_x_pos = Sprite_X_Pos;
+	 assign red_y_pos = Sprite_Y_Pos;
+	 
 	 always_ff @ (posedge Clk) begin
 		  Sprite_X_Pos <= 10'd150;
 		  Sprite_Y_Pos <= 10'd240;
@@ -45,7 +49,7 @@ module sprite_red ( input         Clk,                // 50 MHz clock
 	 int Sprite_Y_Bound, Sprite_X_Bound, Size;
     assign Size = Sprite_Size;
 	 assign Sprite_X_Bound = Sprite_X_Pos + Sprite_Size;
-	 assign Sprite_Y_Bound = Sprite_Y_Pos - Sprite_Size;
+	 assign Sprite_Y_Bound = Sprite_Y_Pos + Sprite_Size;
     always_comb begin
         if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound) 
             is_sprite_red = 1'b1;

@@ -22,48 +22,63 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
 							  input					Clk,
                                                               //   or background (computed in ball.sv)
                        input        [9:0] DrawX, DrawY,       // Current pixel coordinates
+							  input 			[9:0] orange_x_pos, orange_y_pos, red_x_pos, red_y_pos, green_x_pos, green_y_pos, blue_x_pos, blue_y_pos, yellow_x_pos, yellow_y_pos,
                        output logic [7:0] VGA_R, VGA_G, VGA_B // VGA RGB output
                      );
     
     logic [7:0] Red, Green, Blue;
 	 logic [23:0] do_yellow, do_green, do_blue, do_orange, do_red;
-	 logic [12:0] read_address, read_address_orange;
-	 logic [9:0] drawx_orange, drawy_orange;
+	 logic [12:0] read_address_orange, read_address_red, read_address_blue, read_address_green, read_address_yellow;
+	 logic [9:0] draw_x_orange, draw_y_orange, draw_x_red, draw_y_red, draw_x_blue, draw_y_blue, draw_x_green, draw_y_green, draw_x_yellow, draw_y_yellow;
     
     // Output colors to VGA
     assign VGA_R = Red;
     assign VGA_G = Green;
     assign VGA_B = Blue;
-	 assign read_address = DrawY * 10'd64 + DrawX;
 	 
 	 always_comb begin
-		drawx_orange = DrawX - 10'd240;
-		drawy_orange = DrawY - 10'd240;
-		read_address_orange = drawy_orange * 10'd64 + drawx_orange;
-	 
+		draw_x_orange = DrawX - orange_x_pos;
+		draw_y_orange = DrawY - orange_y_pos;
+		read_address_orange = draw_y_orange * 10'd64 + draw_x_orange;
+		
+		draw_x_red = DrawX - red_x_pos;
+		draw_y_red = DrawY - red_y_pos;
+		read_address_red = draw_y_red * 10'd64 + draw_x_red;
+		
+		draw_x_green = DrawX - green_x_pos;
+		draw_y_green = DrawY - green_y_pos;
+		read_address_green = draw_y_green * 10'd64 + draw_x_green;
+		
+		draw_x_blue = DrawX - blue_x_pos;
+		draw_y_blue = DrawY - blue_y_pos;
+		read_address_blue = draw_y_blue * 10'd64 + draw_x_blue;
+		
+		draw_x_yellow = DrawX - yellow_x_pos;
+		draw_y_yellow = DrawY - yellow_y_pos;
+		read_address_yellow = draw_y_yellow * 10'd64 + draw_x_yellow;
 	 end
 	 
 	 
 	 frameRAM_yellow y(
-		.read_address(read_address),
+		.read_address(read_address_yellow),
 		.Clk(Clk),
 		.data_Out(do_yellow)
 	 );
 	 
 	 frameRAM_red r(
-		.read_address(read_address),
+		.read_address(read_address_red),
 		.Clk(Clk),
 		.data_Out(do_red)
 	 );
 	 
 	 frameRAM_blue b(
-		.read_address(read_address),
+		.read_address(read_address_blue),
 		.Clk(Clk),
 		.data_Out(do_blue)
 	 );
 	 
 	 frameRAM_green g(
-		.read_address(read_address),
+		.read_address(read_address_green),
 		.Clk(Clk),
 		.data_Out(do_green)
 	 );

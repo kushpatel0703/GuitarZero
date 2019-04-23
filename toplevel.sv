@@ -54,6 +54,8 @@ module toplevel(
 	 logic [9:0] DrawX;
 	 logic [9:0] DrawY;
 	 
+	 logic [9:0] orange_x_pos, orange_y_pos, yellow_x_pos, yellow_y_pos, red_x_pos, red_y_pos, blue_x_pos, blue_y_pos, green_x_pos, green_y_pos;
+	 
 	 
     assign Clk = CLOCK_50;
     always_ff @ (posedge Clk) begin
@@ -140,6 +142,16 @@ module toplevel(
 		.is_sprite_green(is_sprite_green),
 		.is_sprite_yellow(is_sprite_yellow),
 		.is_sprite_orange(is_sprite_orange),
+		.orange_x_pos(orange_x_pos),
+		.orange_y_pos(orange_y_pos),
+		.red_x_pos(red_x_pos),
+	   .red_y_pos(red_y_pos),
+		.blue_x_pos(blue_x_pos),
+	   .blue_y_pos(blue_y_pos),
+		.green_x_pos(green_x_pos),
+	   .green_y_pos(green_y_pos),
+		.yellow_x_pos(yellow_x_pos),
+	   .yellow_y_pos(yellow_y_pos),
 		.Clk(Clk),
 		.DrawX(DrawX),
 		.DrawY(DrawY),
@@ -156,7 +168,9 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_red(is_sprite_red),  
-	  .keycode(keycode)
+	  .keycode(keycode),
+	  .red_x_pos(red_x_pos),
+	  .red_y_pos(red_y_pos)
 	);
 	
 	
@@ -167,7 +181,9 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_blue(is_sprite_blue),  
-	  .keycode(keycode)
+	  .keycode(keycode),
+	  .blue_x_pos(blue_x_pos),
+	  .blue_y_pos(blue_y_pos)
 	);
 	
 	
@@ -178,7 +194,9 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_green(is_sprite_green),  
-	  .keycode(keycode)
+	  .keycode(keycode),
+	  .green_x_pos(green_x_pos),
+	  .green_y_pos(green_y_pos)
 	);
 
 	
@@ -189,7 +207,9 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_yellow(is_sprite_yellow),  
-	  .keycode(keycode)
+	  .keycode(keycode),
+	  .yellow_x_pos(yellow_x_pos),
+	  .yellow_y_pos(yellow_y_pos)
 	);
 	
 	sprite_orange o1(
@@ -199,7 +219,9 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_orange(is_sprite_orange),  
-	  .keycode(keycode)
+	  .keycode(keycode),
+	  .orange_x_pos(orange_x_pos),
+	  .orange_y_pos(orange_y_pos)
 	);
 
 
