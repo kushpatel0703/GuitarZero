@@ -24,7 +24,7 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
     
     parameter [9:0] Sprite_X_Min = 10'd0;       // Leftmost point on the X axis
     parameter [9:0] Sprite_X_Max = 10'd639;     // Rightmost point on the X axis
-    parameter [9:0] sprite_Y_Min = 10'd0;       // Topmost point on the Y axis
+    parameter [9:0] Sprite_Y_Min = 10'd0;       // Topmost point on the Y axis
     parameter [9:0] Sprite_Y_Max = 10'd479;     // Bottommost point on the Y axis
     parameter [9:0] Sprite_Y_Step = 10'd1;      // Step size on the Y axis
     parameter [9:0] Sprite_Size = 10'd64;        // Ball size
@@ -38,8 +38,8 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
     end
 	 
 	 always_ff @ (posedge Clk) begin
-		  Sprite_X_Pos <= 10'd320;
-		  Sprite_Y_Pos <= 10'd240;
+		  Sprite_X_Pos <= 10'd50;
+		  Sprite_Y_Pos <= 10'd400;
 	 end
 	 
 	 int Sprite_Y_Bound, Sprite_X_Bound, Size;

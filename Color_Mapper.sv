@@ -35,31 +35,31 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
     assign VGA_B = Blue;
 	 assign read_address = DrawY * 10'd64 + DrawX;
 	 
-	 frameRAM_yellow(
+	 frameRAM_yellow y(
 		.read_address(read_address),
 		.Clk(Clk),
 		.data_Out(do_yellow)
 	 );
 	 
-	 frameRAM_red(
+	 frameRAM_red r(
 		.read_address(read_address),
 		.Clk(Clk),
 		.data_Out(do_red)
 	 );
 	 
-	 frameRAM_blue(
+	 frameRAM_blue b(
 		.read_address(read_address),
 		.Clk(Clk),
 		.data_Out(do_blue)
 	 );
 	 
-	 frameRAM_green(
+	 frameRAM_green g(
 		.read_address(read_address),
 		.Clk(Clk),
 		.data_Out(do_green)
 	 );
 	 
-	 frameRAM_orange(
+	 frameRAM_orange o(
 		.read_address(read_address),
 		.Clk(Clk),
 		.data_Out(do_orange)
@@ -72,37 +72,37 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
         if (is_sprite_red == 1'b1) 
         begin
             // White ball
-            Red = 8'hff;
-            Green = 8'hff;
-            Blue = 8'hff;
+            Red = do_red[23:16];
+            Green = do_red[15:8];
+            Blue = do_red[7:0];
         end
 		  else if (is_sprite_blue == 1'b1) 
         begin
             // White ball
-            Red = 8'hff;
-            Green = 8'hff;
-            Blue = 8'hff;
+            Red = do_blue[23:16];
+            Green = do_blue[15:8];
+            Blue = do_blue[7:0];
         end
 		  else if (is_sprite_green == 1'b1) 
         begin
             // White ball
-            Red = 8'hff;
-            Green = 8'hff;
-            Blue = 8'hff;
+            Red = do_green[23:16];
+            Green = do_green[15:8];
+            Blue = do_green[7:0];
         end
 		  else if (is_sprite_yellow == 1'b1) 
         begin
             // White ball
-            Red = 8'hff;
-            Green = 8'hff;
-            Blue = 8'hff;
+            Red = do_yellow[23:16];
+            Green = do_yellow[15:8];
+            Blue = do_yellow[7:0];
         end
 		  else if (is_sprite_orange == 1'b1) 
         begin
             // White ball
-            Red = 8'hff;
-            Green = 8'hff;
-            Blue = 8'hff;
+            Red = do_orange[23:16];
+            Green = do_orange[15:8];
+            Blue = do_orange[7:0];
         end
         else 
         begin

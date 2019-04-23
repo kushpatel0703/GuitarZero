@@ -139,7 +139,7 @@ module toplevel(
 		.is_sprite_blue(is_sprite_blue),
 		.is_sprite_green(is_sprite_green),
 		.is_sprite_yellow(is_sprite_yellow),
-		.is_sprite_orange(is_sprite_ornage),
+		.is_sprite_orange(is_sprite_orange),
 		.Clk(Clk),
 		.DrawX(DrawX),
 		.DrawY(DrawY),
@@ -192,7 +192,7 @@ module toplevel(
 	  .keycode(keycode)
 	);
 	
-	sprite_orange(
+	sprite_orange o1(
 	  .Clk(Clk),         
 	  .Reset(Reset_h),       
 	  .frame_clk(VGA_VS),   
