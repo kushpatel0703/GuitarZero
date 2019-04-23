@@ -27,13 +27,22 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
     
     logic [7:0] Red, Green, Blue;
 	 logic [23:0] do_yellow, do_green, do_blue, do_orange, do_red;
-	 logic [12:0] read_address;
+	 logic [12:0] read_address, read_address_orange;
+	 logic [9:0] drawx_orange, drawy_orange;
     
     // Output colors to VGA
     assign VGA_R = Red;
     assign VGA_G = Green;
     assign VGA_B = Blue;
 	 assign read_address = DrawY * 10'd64 + DrawX;
+	 
+	 always_comb begin
+		drawx_orange = DrawX - 10'd240;
+		drawy_orange = DrawY - 10'd240;
+		read_address_orange = drawy_orange * 10'd64 + drawx_orange;
+	 
+	 end
+	 
 	 
 	 frameRAM_yellow y(
 		.read_address(read_address),
@@ -60,7 +69,7 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
 	 );
 	 
 	 frameRAM_orange o(
-		.read_address(read_address),
+		.read_address(read_address_orange),
 		.Clk(Clk),
 		.data_Out(do_orange)
 	 );

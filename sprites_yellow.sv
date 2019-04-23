@@ -47,7 +47,7 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
 	 assign Sprite_X_Bound = Sprite_X_Pos + Sprite_Size;
 	 assign Sprite_Y_Bound = Sprite_Y_Pos - Sprite_Size;
     always_comb begin
-        if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY <= Sprite_Y_Pos && DrawY > Sprite_Y_Bound) 
+        if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound) 
             is_sprite_yellow = 1'b1;
         else
             is_sprite_yellow = 1'b0;

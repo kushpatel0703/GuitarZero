@@ -1,5 +1,5 @@
 Flow report for ECE385_FinalProj
-Mon Apr 22 20:21:07 2019
+Mon Apr 22 22:25:11 2019
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -40,20 +40,20 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Apr 22 20:21:07 2019       ;
+; Flow Status                        ; Successful - Mon Apr 22 22:25:11 2019       ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                      ; ECE385_FinalProj                            ;
 ; Top-level Entity Name              ; toplevel                                    ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 3,359 / 114,480 ( 3 % )                     ;
-;     Total combinational functions  ; 2,708 / 114,480 ( 2 % )                     ;
+; Total logic elements               ; 3,233 / 114,480 ( 3 % )                     ;
+;     Total combinational functions  ; 2,596 / 114,480 ( 2 % )                     ;
 ;     Dedicated logic registers      ; 2,114 / 114,480 ( 2 % )                     ;
 ; Total registers                    ; 2233                                        ;
 ; Total pins                         ; 136 / 529 ( 26 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 502,912 / 3,981,312 ( 13 % )                ;
+; Total memory bits                  ; 11,392 / 3,981,312 ( < 1 % )                ;
 ; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
 ; Total PLLs                         ; 2 / 4 ( 50 % )                              ;
 +------------------------------------+---------------------------------------------+
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/22/2019 20:18:09 ;
+; Start date & time ; 04/22/2019 22:22:15 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ECE385_FinalProj    ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+------------------+-----------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value    ; Entity Name     ; Section Id     ;
 +--------------------------------------+----------------------------------------+------------------+-----------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 242250662097340.155598228805916        ; --               ; --              ; --             ;
+; COMPILER_SIGNATURE_ID                ; 242250662097340.155598973408604        ; --               ; --              ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --               ; --              ; testbench      ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench                              ; --               ; --              ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                      ; --               ; --              ; eda_simulation ;
@@ -113,12 +113,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:53     ; 1.0                     ; 4977 MB             ; 00:03:17                           ;
-; Fitter               ; 00:00:35     ; 1.0                     ; 5507 MB             ; 00:00:46                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4722 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:06     ; 1.1                     ; 4883 MB             ; 00:00:05                           ;
-; EDA Netlist Writer   ; 00:00:09     ; 1.0                     ; 4734 MB             ; 00:00:07                           ;
-; Total                ; 00:02:48     ; --                      ; --                  ; 00:04:20                           ;
+; Analysis & Synthesis ; 00:01:54     ; 1.0                     ; 4981 MB             ; 00:03:08                           ;
+; Fitter               ; 00:00:33     ; 1.0                     ; 5505 MB             ; 00:00:42                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4720 MB             ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.1                     ; 4877 MB             ; 00:00:05                           ;
+; EDA Netlist Writer   ; 00:00:08     ; 1.0                     ; 4727 MB             ; 00:00:07                           ;
+; Total                ; 00:02:46     ; --                      ; --                  ; 00:04:07                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
