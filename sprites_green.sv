@@ -32,6 +32,8 @@ module sprite_green ( input         Clk,                // 50 MHz clock
 	 
 	 logic frame_clk_delayed, frame_clk_rising_edge;
 	 logic [9:0] Sprite_X_Pos, Sprite_Y_Pos;
+	 logic [9:0] Sprite_Y_Motion;
+	 logic [9:0] Sprite_Y_Pos_in, Sprite_Y_Motion_in;
 	 
 	 assign green_x_pos = Sprite_X_Pos;
 	 assign green_y_pos = Sprite_Y_Pos;
@@ -42,12 +44,27 @@ module sprite_green ( input         Clk,                // 50 MHz clock
     end
 	 
 	 always_ff @ (posedge Clk) begin
-		  Sprite_X_Pos <= 10'd350;
-		  Sprite_Y_Pos <= 10'd240;
+		if (Reset) begin
+			Sprite_X_Pos <= 10'd350;
+			Sprite_Y_Pos <= 10'd0;
+			Sprite_Y_Motion <= Sprite_Y_Step;
+		end
+		else begin
+			Sprite_Y_Pos <= Sprite_Y_Pos_in;
+			Sprite_Y_Motion <= Sprite_Y_Motion_in;
+		end
 	 end
 	 
-	 int Sprite_Y_Bound, Sprite_X_Bound, Size;
-    assign Size = Sprite_Size;
+	 always_comb begin
+		Sprite_Y_Motion_in = Sprite_Y_Motion;
+		Sprite_Y_Pos_in = Sprite_Y_Pos;
+		 if (frame_clk_rising_edge) begin
+			Sprite_Y_Motion_in = (Sprite_Y_Step);
+			Sprite_Y_Pos_in = Sprite_Y_Pos + Sprite_Y_Motion;
+		end
+	 end
+	 
+	 int Sprite_Y_Bound, Sprite_X_Bound;
 	 assign Sprite_X_Bound = Sprite_X_Pos + Sprite_Size;
 	 assign Sprite_Y_Bound = Sprite_Y_Pos + Sprite_Size;
     always_comb begin
