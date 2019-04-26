@@ -47,7 +47,10 @@ module toplevel(
                                  DRAM_CS_N,    //SDRAM Chip Select
                                  DRAM_CLK      //SDRAM Clock
                     );
-    
+    logic [1:0] hpi_addr;
+    logic [15:0] hpi_data_in, hpi_data_out;
+    logic hpi_r, hpi_w, hpi_cs, hpi_reset;
+	 
     logic Reset_h, Clk, is_sprite_red, is_sprite_blue, is_sprite_green, is_sprite_yellow, is_sprite_orange;
     logic [7:0] keycode;
 	 logic [3:0] toHex;

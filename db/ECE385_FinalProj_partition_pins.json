@@ -160,6 +160,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "OTG_ADDR[1]",
+					"strict" : false
+				},
+				{
 					"name" : "OTG_CS_N",
 					"strict" : false
 				},
