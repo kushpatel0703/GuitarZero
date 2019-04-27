@@ -9,10 +9,13 @@ current.DAC 0 0 1 0 0 0 1
 current.DAC_DONE 0 1 0 0 0 0 1 
 current.DONE 1 0 0 0 0 0 1 
 
-State Machine - |toplevel|music_statemachine:msm|data_reader:dr|out
-Name out.0111111111111111 
-out.0000000000000000 0 
-out.0111111111111111 1 
+State Machine - |toplevel|music_statemachine:msm|sram_reader:rdr|current
+Name current.RR_1 current.RL_1 current.RR_0 current.RL_0 current.IDLE 
+current.RL_0 0 0 0 0 0 
+current.RR_0 0 0 1 1 0 
+current.RL_1 0 1 0 1 0 
+current.RR_1 1 0 0 1 0 
+current.IDLE 0 0 0 1 1 
 
 State Machine - |toplevel|music_statemachine:msm|audio_interface:audint|state
 Name state.b_end state.b_stop1 state.b_stop0 state.d_ack state.d7 state.d6 state.d5 state.d4 state.d3 state.d2 state.d1 state.d0 state.a_ack state.a7 state.a6 state.a5 state.a4 state.a3 state.a2 state.a1 state.a0 state.b_ack state.b7 state.b6 state.b5 state.b4 state.b3 state.b2 state.b1 state.b0 state.start state.initialize 

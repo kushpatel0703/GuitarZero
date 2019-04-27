@@ -499,7 +499,8 @@ BEGIN
 		end if;
 	end process;
 			
-	
+
+	-- Probably need to change this to 8 for a 44 kHz sample rate TODO
 	SCLK_int <= I2C_counter(9) or SCLK_inhibit; -- SCLK = CLK / 512 = 97.65 kHz ~= 100 kHz
 --	SCLK_int <= I2C_counter(3) or SCLK_inhibit; -- For simulation only
 	AUD_MCLK <= I2C_counter(2); -- MCLK = CLK / 4

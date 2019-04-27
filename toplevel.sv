@@ -11,10 +11,20 @@
 module toplevel(
 				input               CLOCK_50,
             input        [3:0]  KEY,          //bit 0 is set up as Reset
-            output logic [6:0]  HEX0, HEX1,
+            output logic [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
 				
+				
+				//Audio Interface
 				input logic AUD_ADCDAT, AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK,
 				output logic AUD_DACDAT, AUD_MCLK, I2C_SCLK, I2C_SDAT,
+				
+				output logic [19:0] SRAM_ADDR,
+				inout wire   [15:0] SRAM_DQ,
+				output logic        SRAM_UB_N,
+										  SRAM_LB_N,
+										  SRAM_CE_N,
+										  SRAM_OE_N,
+										  SRAM_WE_N,
 				
              // VGA Interface 
              output logic [7:0]  VGA_R,        //VGA Red
@@ -56,6 +66,15 @@ module toplevel(
 	 logic [3:0] toHex;
 	 logic [9:0] DrawX;
 	 logic [9:0] DrawY;
+	 
+	 logic [3:0] toHex00;
+	 logic [3:0] toHex01;
+	 logic [3:0] toHex02;
+	 logic [3:0] toHex03;
+	 logic [3:0] toHex10;
+	 logic [3:0] toHex11;
+	 logic [3:0] toHex12;
+	 logic [3:0] toHex13;
 	 
 	 logic [9:0] orange_x_pos, orange_y_pos, yellow_x_pos, yellow_y_pos, red_x_pos, red_y_pos, blue_x_pos, blue_y_pos, green_x_pos, green_y_pos;
 	 
@@ -129,15 +148,25 @@ module toplevel(
 	);
 
     
-   music_statemachine msm(
+	music_statemachine msm(
 		.CLK(Clk),
 		.RESET(Reset_h),
 		.MUS_DONE(MUS_DONE), //Signal 
-		.debug(toHex[3:0]),
+		.debug00(toHex00[3:0]),
+		.debug01(toHex01[3:0]),
+		.debug02(toHex02[3:0]),
+		.debug03(toHex03[3:0]),
+		.debug10(toHex10[3:0]),
+		.debug11(toHex11[3:0]),
+		.debug12(toHex12[3:0]),
+		.debug13(toHex13[3:0]),
 		.AUD_ADCDAT, .AUD_DACLRCK, .AUD_ADCLRCK, .AUD_BCLK,
-		.AUD_DACDAT, .AUD_MCLK, .I2C_SCLK, .I2C_SDAT
-	);
+		.AUD_DACDAT, .AUD_MCLK, .I2C_SCLK, .I2C_SDAT,
+		.SRAM_ADDR, .SRAM_DQ, .SRAM_UB_N, .SRAM_LB_N, .SRAM_CE_N, .SRAM_OE_N, .SRAM_WE_N	
+		
+	);  
 
+	
 	
 	color_mapper col(
 		.is_sprite_red(is_sprite_red),
@@ -229,8 +258,14 @@ module toplevel(
 
 
     // Display keycode on hex display
-    HexDriver hex_inst_0 ({4'b0,toHex[3:0]}, HEX0);
-    HexDriver hex_inst_1 (8'b0, HEX1);
-//    
+    HexDriver hex_inst_0 (toHex00[3:0], HEX0);
+    HexDriver hex_inst_1 (toHex01[3:0], HEX1);
+	 HexDriver hex_inst_2 (toHex02[3:0], HEX2);
+    HexDriver hex_inst_3 (toHex03[3:0], HEX3);
+	 
+	 HexDriver hex_inst_4 (toHex10[3:0], HEX4);
+    HexDriver hex_inst_5 (toHex11[3:0], HEX5);
+	 HexDriver hex_inst_6 (toHex12[3:0], HEX6);
+    HexDriver hex_inst_7 (toHex13[3:0], HEX7);
     
 endmodule
