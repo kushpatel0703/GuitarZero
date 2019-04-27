@@ -39,23 +39,23 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
 	 always_comb begin
 		draw_x_orange = DrawX - orange_x_pos;
 		draw_y_orange = DrawY - orange_y_pos;
-		read_address_orange = draw_y_orange * 10'd64 + draw_x_orange;
+		read_address_orange = draw_y_orange * 10'd40 + draw_x_orange;
 		
 		draw_x_red = DrawX - red_x_pos;
 		draw_y_red = DrawY - red_y_pos;
-		read_address_red = draw_y_red * 10'd64 + draw_x_red;
+		read_address_red = draw_y_red * 10'd40 + draw_x_red;
 		
 		draw_x_green = DrawX - green_x_pos;
 		draw_y_green = DrawY - green_y_pos;
-		read_address_green = draw_y_green * 10'd64 + draw_x_green;
+		read_address_green = draw_y_green * 10'd40 + draw_x_green;
 		
 		draw_x_blue = DrawX - blue_x_pos;
 		draw_y_blue = DrawY - blue_y_pos;
-		read_address_blue = draw_y_blue * 10'd64 + draw_x_blue;
+		read_address_blue = draw_y_blue * 10'd40 + draw_x_blue;
 		
 		draw_x_yellow = DrawX - yellow_x_pos;
 		draw_y_yellow = DrawY - yellow_y_pos;
-		read_address_yellow = draw_y_yellow * 10'd64 + draw_x_yellow;
+		read_address_yellow = draw_y_yellow * 10'd40 + draw_x_yellow;
 	 end
 	 
 	 
@@ -93,47 +93,73 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
     // Assign color based on is_ball signal
     always_comb
     begin
-        if (is_sprite_red == 1'b1) 
+		  if (is_sprite_red == 1'b1 && do_red != 24'hffaec9) 
         begin
-            // White ball
+            // Red Sprite
             Red = do_red[23:16];
             Green = do_red[15:8];
             Blue = do_red[7:0];
         end
-		  else if (is_sprite_blue == 1'b1) 
+		  else if (is_sprite_blue == 1'b1 && do_blue != 24'hffaec9) 
         begin
-            // White ball
+            // Blue Sprite
             Red = do_blue[23:16];
             Green = do_blue[15:8];
             Blue = do_blue[7:0];
         end
-		  else if (is_sprite_green == 1'b1) 
+		  else if (is_sprite_green == 1'b1 && do_green != 24'hffaec9) 
         begin
-            // White ball
+            // Green Sprite
             Red = do_green[23:16];
             Green = do_green[15:8];
             Blue = do_green[7:0];
         end
-		  else if (is_sprite_yellow == 1'b1) 
+		  else if (is_sprite_yellow == 1'b1 && do_yellow != 24'hffaec9) 
         begin
-            // White ball
+            // Yellow Sprite
             Red = do_yellow[23:16];
             Green = do_yellow[15:8];
             Blue = do_yellow[7:0];
         end
-		  else if (is_sprite_orange == 1'b1) 
+		  else if (is_sprite_orange == 1'b1 && do_orange != 24'hffaec9) 
         begin
-            // White ball
+            // Orange Sprite
             Red = do_orange[23:16];
             Green = do_orange[15:8];
             Blue = do_orange[7:0];
         end
+		  else if (DrawX > 149 && DrawX < 491 && DrawY > 419 && DrawY < 451)
+		  begin
+				Red = 8'hff;
+				Green = 8'h39;
+				Blue = 8'h88;
+		  end
+		  else if (DrawX > 144 && DrawX < 150) 
+		  begin
+				// Left Bar
+				Red = 8'hC0;
+				Green = 8'hC0;
+				Blue = 8'hC0;
+		  end
+		  else if (DrawX > 490 && DrawX < 496) 
+		  begin
+				// Right Bar
+				Red = 8'hC0;
+				Green = 8'hC0;
+				Blue = 8'hC0;
+		  end
+		  else if (DrawX > 149 && DrawX < 491)
+		  begin
+				Red = 8'hff;
+				Green = 8'hae;
+				Blue = 8'hc9;
+		  end
         else 
         begin
             // Background with nice color gradient
-            Red = 8'h3f; 
-            Green = 8'h00;
-            Blue = 8'h7f - {1'b0, DrawX[9:3]};
+            Red = 8'hde; 
+            Green = 8'hb8;
+            Blue = 8'h87;
         end
     end 
     

@@ -8,3 +8,22 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.e
 
 !ENTRY org.eclipse.cdt.core 1 0 2019-04-25 21:47:42.018
 !MESSAGE Indexed 'usb_kb' (80 sources, 62 headers) in 4.51 sec: 1,190 declarations; 2,486 references; 110 unresolved inclusions; 6 syntax errors; 191 unresolved names (4.9%)
+!SESSION 2019-04-27 15:21:52.003 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/intelfpga_lite/18.0/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/intelfpga_lite/18.0/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-04-27 15:22:28.265
+!MESSAGE Indexed 'usb_kb' (3 sources, 44 headers) in 1.9 sec: 2,039 declarations; 3,871 references; 10 unresolved inclusions; 0 syntax errors; 56 unresolved names (0.94%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-04-27 15:22:32.683
+!MESSAGE Indexed 'usb_kb_bsp' (80 sources, 150 headers) in 4.25 sec: 5,237 declarations; 8,374 references; 1 unresolved inclusions; 2 syntax errors; 9 unresolved names (0.066%)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-04-27 15:23:15.415
+!MESSAGE Executing: [C:/intelfpga_lite/18.0/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0xe8 --id=0x0 --timestamp=1556243007]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-04-27 15:23:17.898
+!MESSAGE Executing: [C:/intelfpga_lite/18.0/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0xe8 --id=0x0 --timestamp=1556243007 /cygdrive/c/Users/Kush/Documents/GitProjects/ECE385_FinalProj/software/usb_kb/usb_kb.elf]

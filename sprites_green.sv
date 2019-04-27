@@ -28,7 +28,7 @@ module sprite_green ( input         Clk,                // 50 MHz clock
     parameter [9:0] Sprite_Y_Min = 10'd0;       // Topmost point on the Y axis
     parameter [9:0] Sprite_Y_Max = 10'd479;     // Bottommost point on the Y axis
     parameter [9:0] Sprite_Y_Step = 10'd1;      // Step size on the Y axis
-    parameter [9:0] Sprite_Size = 10'd64;        // Ball size
+    parameter [9:0] Sprite_Size = 10'd40;        // Ball size
 	 
 	 logic frame_clk_delayed, frame_clk_rising_edge;
 	 logic [9:0] Sprite_X_Pos, Sprite_Y_Pos;
@@ -45,7 +45,7 @@ module sprite_green ( input         Clk,                // 50 MHz clock
 	 
 	 always_ff @ (posedge Clk) begin
 		if (Reset) begin
-			Sprite_X_Pos <= 10'd350;
+			Sprite_X_Pos <= 10'd150;
 			Sprite_Y_Pos <= 10'd0;
 			Sprite_Y_Motion <= Sprite_Y_Step;
 		end
@@ -59,8 +59,18 @@ module sprite_green ( input         Clk,                // 50 MHz clock
 		Sprite_Y_Motion_in = Sprite_Y_Motion;
 		Sprite_Y_Pos_in = Sprite_Y_Pos;
 		 if (frame_clk_rising_edge) begin
-			Sprite_Y_Motion_in = (Sprite_Y_Step);
-			Sprite_Y_Pos_in = Sprite_Y_Pos + Sprite_Y_Motion;
+			if (Sprite_Y_Pos > Sprite_Y_Max) begin
+				Sprite_Y_Pos_in = 10'd0;
+				Sprite_Y_Motion_in = 10'd0;
+			end
+			else begin
+				Sprite_Y_Motion_in = Sprite_Y_Motion;
+				Sprite_Y_Pos_in = Sprite_Y_Pos + Sprite_Y_Motion;
+			end
+			
+			if (keycode == 8'h04) begin
+				Sprite_Y_Motion_in = 10'd1;
+			end
 		end
 	 end
 	 
@@ -68,7 +78,7 @@ module sprite_green ( input         Clk,                // 50 MHz clock
 	 assign Sprite_X_Bound = Sprite_X_Pos + Sprite_Size;
 	 assign Sprite_Y_Bound = Sprite_Y_Pos + Sprite_Size;
     always_comb begin
-        if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound) 
+        if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound && Sprite_Y_Motion == 1'b1) 
             is_sprite_green = 1'b1;
         else
             is_sprite_green = 1'b0;

@@ -13,11 +13,11 @@ module  frameRAM_yellow
 );
 
 // mem has width of 24 bits and a total of 4096 addresses
-logic [23:0] mem [0:4095];
+logic [23:0] mem [0:1599];
 
 initial
 begin
-	 $readmemh("ECE385-HelperTools-master/PNG To Hex/On-Chip Memory/sprite_bytes/yellow.txt", mem);
+	 $readmemh("ECE385-HelperTools-master/PNG To Hex/On-Chip Memory/sprite_bytes/yellow_new.txt", mem);
 end
 
 
