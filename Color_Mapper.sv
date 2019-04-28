@@ -148,18 +148,25 @@ module  color_mapper ( input              is_sprite_red,            // Whether c
 				Green = 8'hC0;
 				Blue = 8'hC0;
 		  end
+		  else if ((DrawX == 170) ||(DrawX == 245) ||(DrawX == 320) ||(DrawX ==395) || (DrawX ==470)) begin
+				//Strings
+				Red = 8'hF5;
+				Green = 8'hF5;
+				Blue = 8'hF5;
+		  end
 		  else if (DrawX > 149 && DrawX < 491)
 		  begin
-				Red = 8'hff;
-				Green = 8'hae;
-				Blue = 8'hc9;
+				//Fret-board
+				Red = 8'h38;
+				Green = 8'h00;
+				Blue = 8'h00;
 		  end
         else 
         begin
             // Background with nice color gradient
-            Red = 8'hde; 
-            Green = 8'hb8;
-            Blue = 8'h87;
+            Red = 8'h20; 
+            Green = 8'h20;
+            Blue = 8'h20;
         end
     end 
     
