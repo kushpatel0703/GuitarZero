@@ -27,7 +27,7 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
     parameter [9:0] Sprite_X_Max = 10'd639;     // Rightmost point on the X axis
     parameter [9:0] Sprite_Y_Min = 10'd0;       // Topmost point on the Y axis
     parameter [9:0] Sprite_Y_Max = 10'd479;     // Bottommost point on the Y axis
-    parameter [9:0] Sprite_Y_Step = 10'd1;      // Step size on the Y axis
+    parameter [9:0] Sprite_Y_Step = 10'd3;      // Step size on the Y axis
     parameter [9:0] Sprite_Size = 10'd40;        // Ball size
 	 
 	 logic frame_clk_delayed, frame_clk_rising_edge;
@@ -69,8 +69,8 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
 				Sprite_Y_Pos_in = Sprite_Y_Pos + Sprite_Y_Motion;
 			end
 			
-			if (keycode == 8'h04) begin
-				Sprite_Y_Motion_in = 10'd1;
+			if (keycode == 8'h07) begin
+				Sprite_Y_Motion_in = Sprite_Y_Step;
 			end
 			
 		end
@@ -80,7 +80,7 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
 	 assign Sprite_X_Bound = Sprite_X_Pos + Sprite_Size;
 	 assign Sprite_Y_Bound = Sprite_Y_Pos + Sprite_Size;
     always_comb begin
-        if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound && Sprite_Y_Motion == 1'b1) 
+        if (DrawX  >= Sprite_X_Pos && DrawX < Sprite_X_Bound && DrawY >= Sprite_Y_Pos && DrawY < Sprite_Y_Bound && Sprite_Y_Motion == Sprite_Y_Step) 
             is_sprite_yellow = 1'b1;
         else
             is_sprite_yellow = 1'b0;

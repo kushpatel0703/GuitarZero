@@ -62,7 +62,7 @@ module toplevel(
     logic hpi_r, hpi_w, hpi_cs, hpi_reset;
 	 
     logic Reset_h, Clk, is_sprite_red, is_sprite_blue, is_sprite_green, is_sprite_yellow, is_sprite_orange;
-    logic [7:0] keycode;
+    logic [7:0] keycode, score;
 	 logic [3:0] toHex;
 	 logic [9:0] DrawX;
 	 logic [9:0] DrawY;
@@ -192,6 +192,18 @@ module toplevel(
 		.VGA_B(VGA_B)
 	);
 	
+	scoring sc(
+		.Clk(Clk),
+		.Reset(Reset_h),
+		.orange_y_pos(orange_y_pos),
+	   .red_y_pos(red_y_pos),
+	   .blue_y_pos(blue_y_pos),
+	   .green_y_pos(green_y_pos),
+	   .yellow_y_pos(yellow_y_pos),
+		.keycode(keycode),
+		.score(score)
+		);	
+	
 	
 	sprite_red r1(
 	  .Clk(Clk),         
@@ -260,8 +272,8 @@ module toplevel(
     // Display keycode on hex display
     HexDriver hex_inst_0 (keycode[3:0], HEX0);
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
-	 HexDriver hex_inst_2 (toHex02[3:0], HEX2);
-    HexDriver hex_inst_3 (toHex03[3:0], HEX3);
+	 HexDriver hex_inst_2 (score[3:0], HEX2);
+    HexDriver hex_inst_3 (score[7:4], HEX3);
 	 
 	 HexDriver hex_inst_4 (toHex10[3:0], HEX4);
     HexDriver hex_inst_5 (toHex11[3:0], HEX5);
