@@ -90,7 +90,6 @@ module sram_reader(
 //	assign debug11[3:0] = debug1[7:4];
 //	assign debug10[3:0] = debug1[3:0];
 	
-	logic [19:0] extra;
 	
 //	assign debug0[15:0] = SRAM_ADDR[15:0];
 //	assign debug1[15:0] = Data_from_SRAM[15:0];
@@ -102,7 +101,6 @@ module sram_reader(
 			SRAM_ADDR <= 20'b0;
 			current <= IDLE;
 			occured_once <= 1'b0;
-			extra <= 20'h0;
 		end
 		
 		if (current == RL_1) begin

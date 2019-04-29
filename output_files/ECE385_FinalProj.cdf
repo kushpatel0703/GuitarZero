@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE115F29) Path("C:/intelFPGA_lite/18.0/ECE385_FinalProj/output_files/") File("ECE385_FinalProj.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE115F29) Path("C:/Users/Kush/Documents/GitProjects/ECE385_FinalProj/output_files/") File("ECE385_FinalProj.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

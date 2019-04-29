@@ -19,6 +19,7 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
                              frame_clk,          // The clock indicating a new frame (~60Hz)
 					input [7:0]	  keycode,
                input [9:0]   DrawX, DrawY,       // Current pixel coordinates
+					input 		  rng,
                output logic  is_sprite_yellow,             // Whether current pixel belongs to ball or background
 					output [9:0]  yellow_x_pos, yellow_y_pos
               );
@@ -69,7 +70,7 @@ module sprite_yellow ( input         Clk,                // 50 MHz clock
 				Sprite_Y_Pos_in = Sprite_Y_Pos + Sprite_Y_Motion;
 			end
 			
-			if (keycode == 8'h07) begin
+			if (rng == 1'b1 && Sprite_Y_Motion == 1'b0) begin
 				Sprite_Y_Motion_in = Sprite_Y_Step;
 			end
 			

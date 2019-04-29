@@ -60,9 +60,18 @@ module toplevel(
     logic [1:0] hpi_addr;
     logic [15:0] hpi_data_in, hpi_data_out;
     logic hpi_r, hpi_w, hpi_cs, hpi_reset;
+	 
+	 logic clk_one_sec;
+	 logic player_flag;
+	
+	 logic g_activate;
+	 logic r_activate;
+	 logic y_activate;
+	 logic b_activate;
+	 logic o_activate;
 
     logic Reset_h, Clk, is_sprite_red, is_sprite_blue, is_sprite_green, is_sprite_yellow, is_sprite_orange;
-    logic [7:0] keycode, score;
+    logic [7:0] keycode, score_1, score_2;
 	 logic [3:0] toHex;
 	 logic [9:0] DrawX;
 	 logic [9:0] DrawY;
@@ -147,19 +156,21 @@ module toplevel(
 		.DrawY(DrawY)
 	);
 
+	counter ctr_onesec_top (.CLK_SIG(AUD_MCLK), .RESET(Reset_h), .counter_val(32'd3125000), .clk_out(clk_one_sec)); 
+
+	
+	RNG rng(.CLK(Clk), .RESET(Reset_h), .AUD_CLK(clk_one_sec),
+			.g_activate,
+			.r_activate,
+			.y_activate,
+			.b_activate,
+			.o_activate
+		);
 
 	music_statemachine msm(
 		.CLK(Clk),
 		.RESET(Reset_h),
 		.MUS_DONE(MUS_DONE), //Signal
-		.debug00(toHex00[3:0]),
-		.debug01(toHex01[3:0]),
-		.debug02(toHex02[3:0]),
-		.debug03(toHex03[3:0]),
-		.debug10(toHex10[3:0]),
-		.debug11(toHex11[3:0]),
-		.debug12(toHex12[3:0]),
-		.debug13(toHex13[3:0]),
 		.AUD_ADCDAT, .AUD_DACLRCK, .AUD_ADCLRCK, .AUD_BCLK,
 		.AUD_DACDAT, .AUD_MCLK, .I2C_SCLK, .I2C_SDAT,
 		.SRAM_ADDR, .SRAM_DQ, .SRAM_UB_N, .SRAM_LB_N, .SRAM_CE_N, .SRAM_OE_N, .SRAM_WE_N
@@ -191,6 +202,16 @@ module toplevel(
 		.VGA_G(VGA_G),
 		.VGA_B(VGA_B)
 	);
+	
+	logic p_clock;
+	counter ctr_player (.CLK_SIG(I2C_SCLK), .RESET(Reset_h), .counter_val(32'd3125000), .clk_out(p_clock)); 
+	
+	player p(
+		.Clk,
+		.OtherClk(clk_one_sec), //p_clock
+		.RESET(Reset_h),
+		.player_flag(player_flag)
+	);
 
 	scoring sc(
 		.Clk(Clk),
@@ -201,7 +222,9 @@ module toplevel(
 	   .green_y_pos(green_y_pos),
 	   .yellow_y_pos(yellow_y_pos),
 		.keycode(keycode),
-		.score(score)
+		.score_1(score_1),
+		.score_2(score_2),
+		.player_flag(player_flag)
 		);
 
 
@@ -214,7 +237,8 @@ module toplevel(
 	  .is_sprite_red(is_sprite_red),
 	  .keycode(keycode),
 	  .red_x_pos(red_x_pos),
-	  .red_y_pos(red_y_pos)
+	  .red_y_pos(red_y_pos),
+	  .rng(r_activate)
 	);
 
 
@@ -227,7 +251,8 @@ module toplevel(
 	  .is_sprite_blue(is_sprite_blue),
 	  .keycode(keycode),
 	  .blue_x_pos(blue_x_pos),
-	  .blue_y_pos(blue_y_pos)
+	  .blue_y_pos(blue_y_pos),
+	  .rng(b_activate)
 	);
 
 
@@ -240,7 +265,8 @@ module toplevel(
 	  .is_sprite_green(is_sprite_green),
 	  .keycode(keycode),
 	  .green_x_pos(green_x_pos),
-	  .green_y_pos(green_y_pos)
+	  .green_y_pos(green_y_pos),
+	  .rng(g_activate)
 	);
 
 
@@ -253,7 +279,8 @@ module toplevel(
 	  .is_sprite_yellow(is_sprite_yellow),
 	  .keycode(keycode),
 	  .yellow_x_pos(yellow_x_pos),
-	  .yellow_y_pos(yellow_y_pos)
+	  .yellow_y_pos(yellow_y_pos),
+	  .rng(y_activate)
 	);
 
 	sprite_orange o1(
@@ -265,7 +292,8 @@ module toplevel(
 	  .is_sprite_orange(is_sprite_orange),
 	  .keycode(keycode),
 	  .orange_x_pos(orange_x_pos),
-	  .orange_y_pos(orange_y_pos)
+	  .orange_y_pos(orange_y_pos),
+	  .rng(o_activate)
 	);
 
 
@@ -273,11 +301,11 @@ module toplevel(
     HexDriver hex_inst_0 (toHex00[3:0], HEX0);
     HexDriver hex_inst_1 (toHex01[3:0], HEX1);
 	 HexDriver hex_inst_2 (toHex02[3:0], HEX2);
-    HexDriver hex_inst_3 (toHex03[3:0], HEX3);
+    HexDriver hex_inst_3 ({2'b0, player_flag}, HEX3);
 
-	 HexDriver hex_inst_4 (toHex10[3:0], HEX4);
-    HexDriver hex_inst_5 (toHex11[3:0], HEX5);
-	 HexDriver hex_inst_6 (toHex12[3:0], HEX6);
-    HexDriver hex_inst_7 (toHex13[3:0], HEX7);
+	 HexDriver hex_inst_4 (score_2[3:0], HEX4);
+    HexDriver hex_inst_5 (score_2[7:4], HEX5);
+	 HexDriver hex_inst_6 (score_1[3:0], HEX6);
+    HexDriver hex_inst_7 (score_1[7:4], HEX7);
 
 endmodule

@@ -96,17 +96,6 @@ module RNG(
 	
 //	inout wire [15:0] SRAM_DQ,
 
-	output logic [3:0] debug00,
-	output logic [3:0] debug01,
-	output logic [3:0] debug02,
-	output logic [3:0] debug03,
-
-
-	output logic [3:0] debug10,
-	output logic [3:0] debug11,
-	output logic [3:0] debug12,
-	output logic [3:0] debug13,
-
 	
 //	output logic [15:0] LData, RData,	
 
@@ -124,21 +113,6 @@ module RNG(
 //	logic [15:0] Data_to_SRAM, Data_from_SRAM;
 	logic occured_once;
 	logic [19:0] RAND_BITS;
-
-	logic [15:0] debug0, debug1;
-
-	assign debug03[3:0] = debug0[15:12];
-	assign debug02[3:0] = debug0[11:8];	
-	assign debug01[3:0] = debug0[7:4];
-	assign debug00[3:0] = debug0[3:0];
-	
-	assign debug13[3:0] = debug1[15:12];
-	assign debug12[3:0] = debug1[11:8];	
-	assign debug11[3:0] = debug1[7:4];
-	assign debug10[3:0] = debug1[3:0];
-	
-
-	assign debug1[15:0] = 16'b0;
 	
 	
 	always_ff @(posedge CLK) begin
@@ -174,13 +148,49 @@ module RNG(
 	
 	
 	always_ff @(posedge AUD_CLK) begin
-		debug0 <= RAND_BITS;
-		
-		g_activate <= RAND_BITS[0];
-		r_activate <= RAND_BITS[1];
-		y_activate <= RAND_BITS[2];
-		b_activate <= RAND_BITS[3];
-		o_activate <= RAND_BITS[4];
+		if (RAND_BITS[2:0] == 3'b000) begin
+			g_activate <= 1'b1;
+			r_activate <= 1'b0;
+			y_activate <= 1'b0;
+			b_activate <= 1'b0;
+			o_activate <= 1'b0;
+		end
+		else if (RAND_BITS[2:0] == 3'b001) begin
+			g_activate <= 1'b0;
+			r_activate <= 1'b1;
+			y_activate <= 1'b0;
+			b_activate <= 1'b0;
+			o_activate <= 1'b0;
+		end
+		else if (RAND_BITS[2:0] == 3'b010) begin
+			g_activate <= 1'b0;
+			r_activate <= 1'b0;
+			y_activate <= 1'b1;
+			b_activate <= 1'b0;
+			o_activate <= 1'b0;
+		end
+		else if (RAND_BITS[2:0] == 3'b011) begin
+			g_activate <= 1'b0;
+			r_activate <= 1'b0;
+			y_activate <= 1'b0;
+			b_activate <= 1'b1;
+			o_activate <= 1'b0;
+		end
+		else if (RAND_BITS[2:0] == 3'b100) begin
+			g_activate <= 1'b0;
+			r_activate <= 1'b0;
+			y_activate <= 1'b0;
+			b_activate <= 1'b0;
+			o_activate <= 1'b1;
+		end
+		else begin
+			g_activate <= 1'b0;
+			r_activate <= 1'b0;
+			y_activate <= 1'b0;
+			b_activate <= 1'b0;
+			o_activate <= 1'b0;
+		end
+
 	end
 	
 	always_comb begin
@@ -214,6 +224,24 @@ endmodule
 
 
 
+module player (
+	input  logic Clk,
+	input  logic OtherClk, //Clk should be operating at 1/30 Hz
+	input  logic RESET,
+	output logic player_flag
+);
+
+	// This module will be synthesized into a RAM
+	always_ff @ (posedge OtherClk) begin
+		if (RESET) begin
+			player_flag <= 1'b0;
+		end
+		else begin
+			player_flag <= ~player_flag;
+		end
+	end
+	
+endmodule
 
 
 
