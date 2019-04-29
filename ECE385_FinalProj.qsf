@@ -594,6 +594,7 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity lab8 -section_
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity lab8 -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -entity lab8 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity lab8 -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE note_modules.sv
 set_global_assignment -name QIP_FILE finalproj_soc/synthesis/finalproj_soc.qip
 set_global_assignment -name SYSTEMVERILOG_FILE sprites_yellow.sv
 set_global_assignment -name SYSTEMVERILOG_FILE sprites_red.sv
