@@ -258,8 +258,8 @@ module toplevel(
 
 
     // Display keycode on hex display
-    HexDriver hex_inst_0 (keycode[3:0], HEX0);
-    HexDriver hex_inst_1 (keycode[7:4], HEX1);
+    HexDriver hex_inst_0 (toHex00[3:0], HEX0);
+    HexDriver hex_inst_1 (toHex01[3:0], HEX1);
 	 HexDriver hex_inst_2 (toHex02[3:0], HEX2);
     HexDriver hex_inst_3 (toHex03[3:0], HEX3);
 	 

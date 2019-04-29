@@ -73,16 +73,31 @@ module music_statemachine(
 //	assign bts = 20'h000DF;
 	
 	logic clk_out;
+	logic clk_one_sec;
+	
+	logic g_activate;
+	logic r_activate;
+	logic y_activate;
+	logic b_activate;
+	logic o_activate;
 	
 	counter ctr (.CLK_SIG(AUD_MCLK), .RESET, .counter_val(32'd71), .clk_out(clk_out)); 
-//counter ctr (.CLK_SIG(AUD_MCLK), .RESET, .counter_val(32'd3125000), .clk_out(clk_out)); 
+counter ctr_onesec (.CLK_SIG(AUD_MCLK), .RESET, .counter_val(32'd3125000), .clk_out(clk_one_sec)); 
 //	sq_wave sqwave(.CLK(CLK), .RESET(RESET), .AUD_CLK(clk_out), .LData(data_left), .RData(data_right), .tempo(tempo));
 	
 	sram_reader rdr(.CLK, .RESET, .AUD_CLK(clk_out), .SRAM_DQ, .SRAM_ADDR, 
-	.debug00, .debug01, .debug02, .debug03,
-	.debug10, .debug11,  .debug12, .debug13,
+//	.debug00, .debug01, .debug02, .debug03,
+//	.debug10, .debug11,  .debug12, .debug13,
 							.SRAM_UB_N, .SRAM_LB_N, .SRAM_CE_N, .SRAM_OE_N, .SRAM_WE_N, .LData(data_left), .RData(data_right));	
 	
+	
+	RNG rng(.CLK, .RESET, .AUD_CLK(clk_one_sec), .debug00, .debug01, .debug02, .debug03, .debug10, .debug11, .debug12, .debug13,
+			.g_activate,
+			.r_activate,
+			.y_activate,
+			.b_activate,
+			.o_activate
+		);
 	
 //	assign debug13[3:0] = SRAM_ADDR[15:12];
 //	assign debug12[3:0] = SRAM_ADDR[11:8];

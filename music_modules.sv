@@ -41,16 +41,16 @@ module sram_reader(
 	
 	inout wire [15:0] SRAM_DQ,
 
-	output logic [3:0] debug00,
-	output logic [3:0] debug01,
-	output logic [3:0] debug02,
-	output logic [3:0] debug03,
-
-
-	output logic [3:0] debug10,
-	output logic [3:0] debug11,
-	output logic [3:0] debug12,
-	output logic [3:0] debug13,
+//	output logic [3:0] debug00,
+//	output logic [3:0] debug01,
+//	output logic [3:0] debug02,
+//	output logic [3:0] debug03,
+//
+//
+//	output logic [3:0] debug10,
+//	output logic [3:0] debug11,
+//	output logic [3:0] debug12,
+//	output logic [3:0] debug13,
 
 	
 	output logic [15:0] LData, RData,	
@@ -78,22 +78,22 @@ module sram_reader(
 	logic invert; 
 //	logic [3:0] count; 
 	
-	logic [15:0] debug0, debug1;
-
-	assign debug03[3:0] = debug0[15:12];
-	assign debug02[3:0] = debug0[11:8];	
-	assign debug01[3:0] = debug0[7:4];
-	assign debug00[3:0] = debug0[3:0];
-	
-	assign debug13[3:0] = debug1[15:12];
-	assign debug12[3:0] = debug1[11:8];	
-	assign debug11[3:0] = debug1[7:4];
-	assign debug10[3:0] = debug1[3:0];
+//	logic [15:0] debug0, debug1;
+//
+//	assign debug03[3:0] = debug0[15:12];
+//	assign debug02[3:0] = debug0[11:8];	
+//	assign debug01[3:0] = debug0[7:4];
+//	assign debug00[3:0] = debug0[3:0];
+//	
+//	assign debug13[3:0] = debug1[15:12];
+//	assign debug12[3:0] = debug1[11:8];	
+//	assign debug11[3:0] = debug1[7:4];
+//	assign debug10[3:0] = debug1[3:0];
 	
 	logic [19:0] extra;
 	
-	assign debug0[15:0] = SRAM_ADDR[15:0];
-	assign debug1[15:0] = Data_from_SRAM[15:0];
+//	assign debug0[15:0] = SRAM_ADDR[15:0];
+//	assign debug1[15:0] = Data_from_SRAM[15:0];
 	
 	always_ff @(posedge CLK) begin
 		if (RESET) begin
