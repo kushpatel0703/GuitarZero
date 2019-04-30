@@ -159,7 +159,7 @@ module toplevel(
 	counter ctr_onesec_top (.CLK_SIG(AUD_MCLK), .RESET(Reset_h), .counter_val(32'd3125000), .clk_out(clk_one_sec)); 
 
 	
-	RNG rng(.CLK(Clk), .RESET(Reset_h), .AUD_CLK(clk_one_sec),
+	RNG2 rng(.Clk(Clk), .RESET(Reset_h), .OtherClk(clk_one_sec),
 			.g_activate,
 			.r_activate,
 			.y_activate,

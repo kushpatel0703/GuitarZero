@@ -52,14 +52,6 @@ state.b_stop0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 state.b_stop1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.b_end 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
-State Machine - |toplevel|RNG:rng|current
-Name current.RNG_3 current.RNG_2 current.RNG_1 current.RNG_0 current.RNG_4 
-current.RNG_0 0 0 0 0 0 
-current.RNG_1 0 0 1 1 0 
-current.RNG_2 0 1 0 1 0 
-current.RNG_3 1 0 0 1 0 
-current.RNG_4 0 0 0 1 1 
-
 State Machine - |toplevel|finalproj_soc:nios_system|finalproj_soc_sdram:sdram|m_next
 Name m_next.010000000 m_next.000010000 m_next.000001000 m_next.000000001 
 m_next.000000001 0 0 0 0 
