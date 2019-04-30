@@ -55,38 +55,21 @@ module music_statemachine(
 	logic [3:0] mus_counter;
 	
 	logic [15:0] data_left, data_right;
-//	logic tempo;
 	logic [31:0] bts;
-	
-//	assign bts = 32'h0377C800;
-//	assign bts = 20'h0BBE4;
-//	assign bts = 20'h000DF;
+
 	
 	logic clk_out;
 	logic clk_one_sec;
-	
-	logic g_activate;
-	logic r_activate;
-	logic y_activate;
-	logic b_activate;
-	logic o_activate;
 	
 	counter ctr (.CLK_SIG(AUD_MCLK), .RESET, .counter_val(32'd71), .clk_out(clk_out)); 
 //	counter ctr_onesec (.CLK_SIG(AUD_MCLK), .RESET, .counter_val(32'd3125000), .clk_out(clk_one_sec)); 
 //	sq_wave sqwave(.CLK(CLK), .RESET(RESET), .AUD_CLK(clk_out), .LData(data_left), .RData(data_right), .tempo(tempo));
 	
 	sram_reader rdr(.CLK, .RESET, .AUD_CLK(clk_out), .SRAM_DQ, .SRAM_ADDR, 
-//	.debug00, .debug01, .debug02, .debug03,
-//	.debug10, .debug11,  .debug12, .debug13,
 							.SRAM_UB_N, .SRAM_LB_N, .SRAM_CE_N, .SRAM_OE_N, .SRAM_WE_N, .LData(data_left), .RData(data_right));	
 	
 	
 	
-	
-//	assign debug13[3:0] = SRAM_ADDR[15:12];
-//	assign debug12[3:0] = SRAM_ADDR[11:8];
-//	assign debug11[3:0] = SRAM_ADDR[7:4];
-//	assign debug10[3:0] = SRAM_ADDR[3:0];
 	
 	always_ff @(posedge CLK) begin
 		if (RESET) begin
@@ -99,9 +82,6 @@ module music_statemachine(
 				mus_counter <= mus_counter + 1'b1;
 			end
 			
-			if (current == INIT_DONE) begin
-//				debug <= debug + 1'b1;
-			end
 			
 			current <= next;
 			mus_LDATA <= mus_LDATA_in;
@@ -127,23 +107,10 @@ module music_statemachine(
 			INIT_DONE: begin
 				next = DAC;
 			end
-//			DAC_START: begin
-//				next = DAC;
-//			end
 			DAC: begin
-//				if (mus_data_over == 1'b1) begin
-//						next = DAC_DONE;
-//				end
 			end
 			DAC_DONE: begin
-//				if (mus_counter < 20'd4096) begin
-//					next = DAC_START;
-//				end
-//				else begin
-//					next = DONE;
-//				end
 			end
-			
 			DONE: begin end
 			default: ;
 		endcase
@@ -166,15 +133,12 @@ module music_statemachine(
 				//No signals need to be set here. Unless we do some load screen animation.
 			end
 			DAC_START: begin
-//				mus_LDATA_in = data_left; //Need to feed these with hex values from table every clock cycle
-//				mus_RDATA_in = data_right;
 			end
 			DAC: begin
 				mus_LDATA_in = data_left; //Need to feed these with hex values from table every clock cycle
 				mus_RDATA_in = data_right;
 			end
-			DAC_DONE: begin
-			
+			DAC_DONE: begin			
 			end
 			DONE: begin
 				MUS_DONE = 1'b1;

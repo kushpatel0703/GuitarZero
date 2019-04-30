@@ -71,7 +71,8 @@ module toplevel(
 	 logic o_activate;
 
     logic Reset_h, Clk, is_sprite_red, is_sprite_blue, is_sprite_green, is_sprite_yellow, is_sprite_orange;
-    logic [7:0] keycode, score_1, score_2;
+    logic [15:0] keycode; 
+	 logic [7:0] score_1, score_2;
 	 logic [3:0] toHex;
 	 logic [9:0] DrawX;
 	 logic [9:0] DrawY;
@@ -204,11 +205,11 @@ module toplevel(
 	);
 	
 	logic p_clock;
-	counter ctr_player (.CLK_SIG(I2C_SCLK), .RESET(Reset_h), .counter_val(32'd3125000), .clk_out(p_clock)); 
+	counter ctr_player (.CLK_SIG(clk_one_sec), .RESET(Reset_h), .counter_val(32'd30), .clk_out(p_clock)); 
 	
 	player p(
 		.Clk,
-		.OtherClk(clk_one_sec), //p_clock
+		.OtherClk(p_clock),
 		.RESET(Reset_h),
 		.player_flag(player_flag)
 	);
@@ -235,7 +236,6 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_red(is_sprite_red),
-	  .keycode(keycode),
 	  .red_x_pos(red_x_pos),
 	  .red_y_pos(red_y_pos),
 	  .rng(r_activate)
@@ -249,7 +249,6 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_blue(is_sprite_blue),
-	  .keycode(keycode),
 	  .blue_x_pos(blue_x_pos),
 	  .blue_y_pos(blue_y_pos),
 	  .rng(b_activate)
@@ -263,7 +262,6 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_green(is_sprite_green),
-	  .keycode(keycode),
 	  .green_x_pos(green_x_pos),
 	  .green_y_pos(green_y_pos),
 	  .rng(g_activate)
@@ -277,7 +275,6 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_yellow(is_sprite_yellow),
-	  .keycode(keycode),
 	  .yellow_x_pos(yellow_x_pos),
 	  .yellow_y_pos(yellow_y_pos),
 	  .rng(y_activate)
@@ -290,7 +287,6 @@ module toplevel(
 	  .DrawX(DrawX),
 	  .DrawY(DrawY),
 	  .is_sprite_orange(is_sprite_orange),
-	  .keycode(keycode),
 	  .orange_x_pos(orange_x_pos),
 	  .orange_y_pos(orange_y_pos),
 	  .rng(o_activate)
@@ -298,10 +294,11 @@ module toplevel(
 
 
     // Display keycode on hex display
-    HexDriver hex_inst_0 (toHex00[3:0], HEX0);
-    HexDriver hex_inst_1 (toHex01[3:0], HEX1);
-	 HexDriver hex_inst_2 (toHex02[3:0], HEX2);
-    HexDriver hex_inst_3 ({2'b0, player_flag}, HEX3);
+    HexDriver hex_inst_0 ({2'b0, player_flag}, HEX0);
+    HexDriver hex_inst_1 (3'b0, HEX1);
+	 HexDriver hex_inst_2 (3'b0, HEX2);
+//	 HexDriver hex_inst_3 (keycode[15:12], HEX3);
+    HexDriver hex_inst_3 (3'b0, HEX3);
 
 	 HexDriver hex_inst_4 (score_2[3:0], HEX4);
     HexDriver hex_inst_5 (score_2[7:4], HEX5);

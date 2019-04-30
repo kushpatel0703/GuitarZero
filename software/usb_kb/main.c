@@ -516,11 +516,11 @@ int main(void)
 
 		// The first two keycodes are stored in 0x051E. Other keycodes are in 
 		// subsequent addresses.
-		keycode = UsbRead(0x051e);
+		keycode = UsbRead(0x0521);
 		printf("\nfirst two keycode values are %04x\n",keycode);
 		// We only need the first keycode, which is at the lower byte of keycode.
 		// Send the keycode to hardware via PIO.
-		*keycode_base = keycode & 0xff; 
+		*keycode_base = keycode & 0xffff;
 
 		usleep(200);//usleep(5000);
 		usb_ctl_val = UsbRead(ctl_reg);
